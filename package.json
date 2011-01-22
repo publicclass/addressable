@@ -1,0 +1,11 @@
+{
+  "name": "addressable",
+  "description": "A CommonJS port of Rubys Addressable gem",
+  "version": "0.1.0",
+  "author": "Robert Sköld <robert@publicclass.se>",
+  "dependencies": {},
+  "keywords": ["addressable", "uri"],
+  "directories": { "lib": "./lib/addressable" },
+  "scripts": { "test": "expresso test/*" },
+  "engines": { "node": ">= 0.2.0" }
+}
