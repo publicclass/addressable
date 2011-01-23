@@ -124,11 +124,51 @@ vows.describe( "An Addressable URI" ).addBatch({
     }
   },
   
+  "a relative file without scheme": {
+    topic: addressable.parse("a/../README"),
+
+    "should have a 'file' scheme.": function(file){
+      assert.equal( file.scheme , undefined );
+    },
+
+    "should be relative.": function(file){
+      assert.isTrue( file.isRelative() );
+    },
+
+    "should not be absolute.": function(file){
+      assert.isFalse( file.isAbsolute() );
+    },
+
+    "should have a normalized path.": function(file){
+      assert.equal( file.path , "README" );
+    }
+  },
+  
   "an absolute file URI": {
     topic: addressable.parse("file:///etc/test/.././hosts"),
 
     "should have a 'file' scheme.": function(file){
       assert.equal( file.scheme , "file" );
+    },
+
+    "should not be relative.": function(file){
+      assert.isFalse( file.isRelative() );
+    },
+
+    "should be absolute.": function(file){
+      assert.isTrue( file.isAbsolute() );
+    },
+
+    "should have a normalized path.": function(file){
+      assert.equal( file.path , "/etc/hosts" );
+    }
+  },
+  
+  "an absolute file without a scheme": {
+    topic: addressable.parse("/etc/test/.././hosts"),
+
+    "should have no 'file' scheme.": function(file){
+      assert.equal( file.scheme , undefined );
     },
 
     "should not be relative.": function(file){
