@@ -1,15 +1,6 @@
-var vows = require("vows"),
-  assert = require("assert"),
-  sys = require("sys");
-  
-var addressable = require("../lib/addressable");
-
-var text = [
-  "A long text with http://youtu.be/laksjd urls",
-  "and some more http://google.com/search?q=addressable links",
-  "or even on the local file:///etc/hosts filesystem.",
-  "What happens with urls with spaces? http://google.com/search?q=with a space"
-].join(" \n")
+var assert = require("assert")
+  , addressable = require("../lib/addressable")
+  , text = require("fs").readFileSync(__dirname+"/fixtures/daring-regex.txt","utf8");
 
 exports["an empty string"] = function(){
   assert.ok( addressable.parse("") instanceof addressable.URI, "should be an URI instance" )
@@ -46,7 +37,7 @@ exports["a relative file URI"] = function(){
   var file = addressable.parse("file://a/../README");
   assert.equal( file.scheme , "file", "should have a 'file' scheme." )
   assert.ok( file.isRelative(), "should be relative." )
-  assert.isFalse( file.isAbsolute(), "should not be absolute." )
+  assert.ok( !file.isAbsolute(), "should not be absolute." )
   assert.equal( file.path , "README", "should have a normalized path." )
 }
   
@@ -54,7 +45,7 @@ exports["a relative file without scheme"] = function(){
   var file = addressable.parse("a/../README")
   assert.equal( file.scheme , undefined, "should have no scheme." )
   assert.ok( file.isRelative() , "should be relative." )
-  assert.isFalse( file.isAbsolute() , "should not be absolute." )
+  assert.ok( !file.isAbsolute() , "should not be absolute." )
   assert.equal( file.path , "README" , "should have a normalized path." )
 }
 
@@ -76,16 +67,16 @@ exports["an absolute file without a scheme"] = function(){
 
 exports["extracted from a text"] = function(){
   var arr = addressable.extract(text);
-  assert.isArray(arr);
+  assert.ok(Array.isArray(arr))
   arr.forEach(function(uri){
-    assert.instanceOf(uri,addressable.URI)
+    assert.ok(uri instanceof addressable.URI)
   })
 }
 
 exports["extracted from a text without urls"] = function(){
   var arr = addressable.extract("a linkless text");
-  assert.isArray(arr)
-  assert.isEmpty(arr)
+  assert.ok(Array.isArray(arr))
+  assert.length(arr,0)
 }
 
 exports["extracted with a replace function"] = function(){
@@ -95,7 +86,7 @@ exports["extracted with a replace function"] = function(){
   })
   assert.notEqual(text,txt)
   assert.includes(txt,"##URL##")
-  assert.isEmpty(addressable.extract(txt))
+  assert.length(addressable.extract(txt),0)
 }
   
 exports["extracted with an empty replace function"] = function(){

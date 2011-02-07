@@ -26,6 +26,10 @@
 		return "<a href='"+uri.href+"'>"+uri.host+"</a>"
 	})
 	
+## Thanks to
+
+* [John Gruber](http://daringfireball.net), for his wonderful [URL RegEx](http://daringfireball.net/2010/07/improved_regex_for_matching_urls) which is used in the URI.extract()-method.
+
 
 ## License 
 
