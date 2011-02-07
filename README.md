@@ -26,6 +26,25 @@
 		return "<a href='"+uri.href+"'>"+uri.host+"</a>"
 	})
 	
+	// But...what do you actually get from an URI?
+	uri.href 			// => 'http://google.com/search?q=hello+world#anchor-it' (the source it was parsed from)
+	uri.scheme			// => 'http'
+	uri.userinfo		// => ''
+	uri.username		// => null
+	uri.password		// => null
+	uri.host			// => 'google.com'
+	uri.port			// => 80
+	uri.path			// => '/search'
+	uri.querystring		// => 'q=hello+world'
+	uri.query			// => { q: 'hello world' }
+	uri.fragment		// => 'anchor-it'
+	uri.search			// => '?q=hello+world'
+	uri.authority		// => 'google.com'
+	uri.toString()		// => 'http://google.com/search?q=hello+world#anchor-it'
+	uri.isAbsolute()	// => true
+	uri.isRelative()	// => false
+	
+	
 ## Thanks to
 
 * [John Gruber](http://daringfireball.net), for his wonderful [URL RegEx](http://daringfireball.net/2010/07/improved_regex_for_matching_urls) which is used in the URI.extract()-method.
