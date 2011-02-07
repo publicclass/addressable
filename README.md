@@ -29,7 +29,7 @@
 	// But...what do you actually get from an URI?
 	uri.href 			// => 'http://google.com/search?q=hello+world#anchor-it' (the source it was parsed from)
 	uri.scheme			// => 'http'
-	uri.userinfo		// => ''
+	uri.userinfo		// => null
 	uri.username		// => null
 	uri.password		// => null
 	uri.host			// => 'google.com'
@@ -43,7 +43,7 @@
 	uri.toString()		// => 'http://google.com/search?q=hello+world#anchor-it'
 	uri.isAbsolute()	// => true
 	uri.isRelative()	// => false
-	
+
 	
 ## Thanks to
 

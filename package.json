@@ -2,7 +2,7 @@
   "name": "addressable",
   "description": "A CommonJS module heavily inspired by Rubys Addressable gem",
   "homepage": "http://github.com/publicclass/addressable",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "Robert Sköld <robert@publicclass.se>",
   "dependencies": {},
   "keywords": ["addressable", "uri"],
