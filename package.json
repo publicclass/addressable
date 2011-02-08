@@ -6,7 +6,7 @@
   "author": "Robert Sköld <robert@publicclass.se>",
   "dependencies": {},
   "keywords": ["addressable", "uri"],
-  "directories": { "lib": "./lib/addressable" },
+  "main": "./lib/addressable",
   "scripts": { "test": "node test/test-addressable.js" },
   "engines": { "node": ">= 0.2.0" }
 }
