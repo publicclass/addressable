@@ -14,7 +14,8 @@ exports["an (non-auth) HTTP URI"] = function(){
   assert.equal(http.userinfo,null,"Should have a 'null' userinfo.")
   assert.equal(http.username,null,"Should have a 'null' username.")
   assert.equal(http.password,null,"Should have a 'null' password.")
-  assert.equal(http.path,"/hej/test.html","should have a path.")
+  assert.equal(http.pathname,"/hej/test.html","should have a pathname.")
+  assert.equal(http.path,http.pathname+http.search,"should have a path.")
   assert.equal(http.querystring,"query=bula&another=bula","should have a querystring.")
   assert.eql(http.query,{query: "bula",another: "bula"},"should have a query object.")
   assert.equal(http.fragment,"anchored","should have a fragment.")
@@ -33,7 +34,8 @@ exports["an (authorized) IP HTTP URI"] = function(){
   assert.equal( ip.username , "user", "should have a username" )
   assert.equal( ip.password , "pass", "should have a password" )
   assert.equal( ip.port , 81, "should have a non-standard port" )
-  assert.equal( ip.path , "/a" , "should have a normalized path" )  
+  assert.equal( ip.pathname , "/a" , "should have a normalized path" )
+  assert.equal( ip.pathname , ip.path , "should have equal path and pathname" )
 }
 
 exports["a relative file URI"] = function(){
@@ -41,7 +43,8 @@ exports["a relative file URI"] = function(){
   assert.equal( file.scheme , "file", "should have a 'file' scheme." )
   assert.ok( file.isRelative(), "should be relative." )
   assert.ok( !file.isAbsolute(), "should not be absolute." )
-  assert.equal( file.path , "README", "should have a normalized path." )
+  assert.equal( file.pathname , "README", "should have a normalized path." )
+  assert.equal( file.pathname , file.path , "should have equal path and pathname" )
 }
   
 exports["a relative file without scheme"] = function(){
@@ -49,7 +52,8 @@ exports["a relative file without scheme"] = function(){
   assert.equal( file.scheme , undefined, "should have no scheme." )
   assert.ok( file.isRelative() , "should be relative." )
   assert.ok( !file.isAbsolute() , "should not be absolute." )
-  assert.equal( file.path , "README" , "should have a normalized path." )
+  assert.equal( file.pathname , "README", "should have a normalized path." )
+  assert.equal( file.pathname , file.path , "should have equal path and pathname" )
 }
 
 exports["an absolute file URI"] = function(){
@@ -57,7 +61,8 @@ exports["an absolute file URI"] = function(){
   assert.equal( file.scheme , "file", "should have a 'file' scheme." )
   assert.ok( !file.isRelative(), "should not be relative." )
   assert.ok( file.isAbsolute(), "should be absolute." )
-  assert.equal( file.path , "/etc/hosts", "should have a normalized path." )
+  assert.equal( file.pathname , "/etc/hosts", "should have a normalized path." )
+  assert.equal( file.pathname , file.path , "should have equal path and pathname" )
 }
 
 exports["an absolute file without a scheme"] = function(){
@@ -65,7 +70,8 @@ exports["an absolute file without a scheme"] = function(){
   assert.equal( file.scheme , undefined, "an absolute file without a scheme." )
   assert.ok( !file.isRelative() , "should not be relative." )
   assert.ok( file.isAbsolute() , "should be absolute." )
-  assert.equal( file.path , "/etc/hosts" , "should have a normalized path." )
+  assert.equal( file.pathname , "/etc/hosts", "should have a normalized path." )
+  assert.equal( file.pathname , file.path , "should have equal path and pathname" )
 }
 
 exports["extracted from a text"] = function(){

@@ -1,6 +1,6 @@
 # Addressable
 
-  A CommonJS module inspired by Rubys Addressable gem.
+  A URI parsing module inspired by Rubys Addressable gem.
 
 
 ## Install
@@ -10,41 +10,65 @@
 
 ## Usage
 
-	var addressable = require("addressable");
-	
-	// Get a proper URI
-	var uri = addressable.parse("http://google.com/search?q=hello+world#anchor-it")
-	
-	// Can do files too!
-	addressable.parse("/var/log/system.log")
-	
-	// Find all those nasty URIs in a text
-	var uris = addressable.extract(text);
-	
-	// Or just replace them!
-	addressable.extract(text,function(uri){
-		return "<a href='"+uri.href+"'>"+uri.host+"</a>"
-	})
-	
-	// But...what do you actually get from an URI?
-	uri.href 			// => 'http://google.com/search?q=hello+world#anchor-it' (the source it was parsed from)
-	uri.scheme			// => 'http'
-	uri.userinfo		// => null
-	uri.username		// => null
-	uri.password		// => null
-	uri.host			// => 'google.com'
-	uri.port			// => 80
-	uri.path			// => '/search'
-	uri.querystring		// => 'q=hello+world'
-	uri.query			// => { q: 'hello world' }
-	uri.fragment		// => 'anchor-it'
-	uri.search			// => '?q=hello+world'
-	uri.authority		// => 'google.com'
-	uri.toString()		// => 'http://google.com/search?q=hello+world#anchor-it'
-	uri.isAbsolute()	// => true
-	uri.isRelative()	// => false
+  var addressable = require("addressable");
+  
+  // Get a proper URI
+  var uri = addressable.parse("http://google.com/search?q=hello+world#anchor-it")
+  
+  // Can do files too!
+  addressable.parse("/var/log/system.log")
+  
+  // Find all those nasty URIs in a text
+  var uris = addressable.extract(text);
+  
+  // Or just replace them!
+  addressable.extract(text,function(uri){
+    return "<a href='"+uri.href+"'>"+uri.host+"</a>"
+  })
+  
+  // But...what do you actually get from an URI?
+  uri.href        // => 'http://google.com/search?q=hello+world#anchor-it' (the source it was parsed from)
+  uri.scheme      // => 'http'
+  uri.userinfo    // => null
+  uri.username    // => null
+  uri.password    // => null
+  uri.host        // => 'google.com'
+  uri.port        // => 80
+  uri.pathname    // => '/search'
+  uri.path        // => '/search?q=hello+world'
+  uri.querystring // => 'q=hello+world'
+  uri.query       // => { q: 'hello world' }
+  uri.fragment    // => 'anchor-it'
+  uri.search      // => '?q=hello+world'
+  uri.authority   // => 'google.com'
+  uri.toString()  // => 'http://google.com/search?q=hello+world#anchor-it'
+  uri.isAbsolute()// => true
+  uri.isRelative()// => false
 
-	
+## History
+
+### 0.3.0
+
+* [Feature] What was previously `uri.path` is now `uri.pathname` and `uri.path` is now essentially `uri.pathname + uri.search` to match the HTTP.request API in Node 0.3.6+.
+
+### 0.2.2
+
+* [Fix] Fixed the package.json.
+
+### 0.2.1
+
+* [Fix] `uri.userinfo` is now null when it was not found in the URI instead of "".
+
+### 0.2.0
+
+* [Feature] Added `addressable.extract()`. Extract or replace URIs from a text.
+
+### 0.1.0
+
+* Intial implementation.
+
+
+  
 ## Thanks to
 
 * [John Gruber](http://daringfireball.net), for his wonderful [URL RegEx](http://daringfireball.net/2010/07/improved_regex_for_matching_urls) which is used in the URI.extract()-method.
