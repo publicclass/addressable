@@ -23,6 +23,12 @@ exports["an (non-auth) HTTP URI"] = function(){
   q.more = "bula";
   http.query = q;
   assert.equal(http.querystring,"query=bula&another=bula&more=bula","should be able to modify the query object.")
+  
+  http.path = "/abc?q=123";
+  assert.equal(http.pathname, "/abc", "changing the path should update the pathname.")
+  assert.equal(http.querystring, "q=123", "changing the path should update the querystring.")
+  assert.equal(http.search, "?q=123", "changing the path should update the search.")
+  assert.eql(http.query, {q:123}, "changing the path should update the query.")
 }
 
 exports["an (authorized) IP HTTP URI"] = function(){

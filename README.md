@@ -47,6 +47,10 @@
 
 ## History
 
+### 0.3.1
+
+* [Fix] `uri.path` is now also a setter.
+
 ### 0.3.0
 
 * [Feature] What was previously `uri.path` is now `uri.pathname` and `uri.path` is now essentially `uri.pathname + uri.search` to match the HTTP.request API in Node 0.3.6+.
