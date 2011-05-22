@@ -10,6 +10,7 @@
 
 ## Usage
 
+```
   var addressable = require("addressable");
   
   // Get a proper URI
@@ -44,6 +45,7 @@
   uri.toString()  // => 'http://google.com/search?q=hello+world#anchor-it'
   uri.isAbsolute()// => true
   uri.isRelative()// => false
+```
 
 ## History
 
