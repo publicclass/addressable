@@ -7,12 +7,15 @@ exports["an empty string"] = function(){
 }
 
 exports["an addressable.URI is parsed to itself"] = function(){
-  var uri1 = addressable.parse("http://www.example.com/hej/test.html?query=bula&another=bula#anchored");
-  assert.ok( uri1 instanceof addressable.URI, "should be an URI instance" )
+  var url = "http://api.twitter.com/1/statuses/show/60697562776219650.json";
+  var uri1 = addressable.parse(url);
   var uri2 = addressable.parse(uri1);
+  assert.ok( uri1 instanceof addressable.URI, "should be an URI instance" )
   assert.ok( uri2 instanceof addressable.URI, "should be an URI instance" )
+  assert.equal( uri1.href, url )
   assert.notEqual( uri1, uri2, "should not be the same instance." )
-  assert.equal( uri1.toString(), uri2.toString(), "should be the same URI string." )
+  assert.equal( uri1.toString(), uri2.toString())
+  assert.equal( uri1.toString(), url)
 }
 
 exports["also accepts nodes built-in URL"] = function(){
