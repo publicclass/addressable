@@ -47,6 +47,10 @@
 
 ## History
 
+### 0.3.3
+
+* [Fix] Support for nodes built-in URL module. It can now be passed in to both addressable.format() and addressable.parse().
+
 ### 0.3.2
 
 * [Fix] Now it's possible to pass an addressable.URI into addressable.parse() which should return a new URI copy of the first one.
