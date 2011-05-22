@@ -47,6 +47,10 @@
 
 ## History
 
+### 0.3.2
+
+* [Fix] Now it's possible to pass an addressable.URI into addressable.parse() which should return a new URI copy of the first one.
+
 ### 0.3.1
 
 * [Fix] `uri.path` is now also a setter.
