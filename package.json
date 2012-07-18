@@ -6,7 +6,7 @@
   "author": "Robert Sköld <robert@publicclass.se>",
   "dependencies": {},
   "keywords": ["addressable", "uri"],
-  "main": "./lib/addressable",
+  "main": "./lib/addressable.js",
   "repository": "git://github.com/publicclass/addressable.git",
   "scripts": { "test": "node test/test-addressable.js" },
   "engines": { "node": ">= 0.2.0" }
